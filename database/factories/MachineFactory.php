@@ -18,7 +18,7 @@ class MachineFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+
         ];
     }
 }
