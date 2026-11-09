@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\MaintenanceOrderController;
 use App\Http\Controllers\Api\MachineController;
 
-
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
@@ -18,3 +17,6 @@ Route::get('/machines/production-lines', [
     MachineController::class,
     'machinesWithProductionLine'
 ]);
+
+//Consulta 5 - Laura Berganza
+Route::get('/machines/status/{status}', [MachineController::class, 'getMachineByStatusAndCriticalityHigh']);
