@@ -18,3 +18,9 @@ Route::get('/machines/production-lines', [
     MachineController::class,
     'machinesWithProductionLine'
 ]);
+
+// Consulta 4
+Route::get('/machines/maintenance-count', [
+    MachineController::class,
+    'machinesWithMaintenanceCount'
+]);
