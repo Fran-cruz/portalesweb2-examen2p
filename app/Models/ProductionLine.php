@@ -9,4 +9,9 @@ class ProductionLine extends Model
 {
     /** @use HasFactory<\Database\Factories\ProductionLineFactory> */
     use HasFactory;
+    public function machines()
+    {
+        return $this->hasMany(Machine::class);
+    }
+
 }

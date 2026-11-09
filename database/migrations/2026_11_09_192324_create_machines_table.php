@@ -13,8 +13,18 @@ return new class extends Migration
     {
         Schema::create('machines', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('production_line_id')
+                ->constrained('production_lines')
+                ->cascadeOnDelete();
+
+            $table->string('code', 30)->unique();
+            $table->string('name', 100);
+            $table->string('type', 50);
+            $table->string('status', 30);
+            $table->string('criticality', 30);
             $table->timestamps();
         });
+
     }
 
     /**

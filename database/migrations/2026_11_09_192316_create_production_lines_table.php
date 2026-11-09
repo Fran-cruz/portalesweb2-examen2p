@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('production_lines', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 100);
+            $table->string('location', 100);
+            $table->string('status', 30);
             $table->timestamps();
         });
+
     }
 
     /**
