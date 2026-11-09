@@ -8,69 +8,17 @@ use App\Models\Machine;
 
 class MachineController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    // Consulta 3. MAQUINAS CON INFORMACION DE SU LINEA DE PRODUCCION
+    public function machinesWithProductionLine()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
-
-    //Consulta 5 - Laura Berganza
-    public function getMachineByStatusAndCriticalityHigh($status)
-    {
-        $machines = Machine::where('status', $status)->where('criticality', 'alta')->select('code','name','type','status', 'criticality')->get();
+        $machines = Machine::with('productionLine:id,name,location')
+            ->select('id', 'code', 'name', 'type', 'status', 'criticality', 'production_line_id')
+            ->orderBy('name')
+            ->get();
 
         return response()->json($machines);
     }
+
     // Consulta 4. CANTIDAD DE ORDENES DE MANTENIMIENTO POR MAQUINA
     public function machinesWithMaintenanceCount()
     {
@@ -81,4 +29,13 @@ class MachineController extends Controller
 
         return response()->json($machines);
     }
+
+    //Consulta 5 - Laura Berganza
+    public function getMachineByStatusAndCriticalityHigh($status)
+    {
+        $machines = Machine::where('status', $status)->where('criticality', 'alta')->select('code','name','type','status', 'criticality')->get();
+
+        return response()->json($machines);
+    }
+
 }
