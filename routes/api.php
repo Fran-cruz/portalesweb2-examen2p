@@ -23,6 +23,9 @@ Route::get('/machines/production-lines', [
     'machinesWithProductionLine'
 ]);
 
+//consulta 2
+Route::get('/machines-completed-maintenance/{date}', [MaintenanceOrderController::class, 'MaintenanceCompleted']);
+
 //Consulta 5 - Laura Berganza
 Route::get('/machines/status/{status}', [MachineController::class, 'getMachineByStatusAndCriticalityHigh']);
 
