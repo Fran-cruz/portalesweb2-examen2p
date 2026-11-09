@@ -67,7 +67,7 @@ class MachineController extends Controller
     //Consulta 5 - Laura Berganza
     public function getMachineByStatusAndCriticalityHigh($status)
     {
-        $machines = Machine::where('status', $status)->where('criticality', 'alta')->get();
+        $machines = Machine::where('status', $status)->where('criticality', 'alta')->select('code','name','type','status', 'criticality')->get();
 
         return response()->json($machines);
     }
