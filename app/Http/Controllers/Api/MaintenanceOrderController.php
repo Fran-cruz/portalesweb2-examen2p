@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\MaintenanceOrder;
 use Illuminate\Http\Request;
+use App\Models\Machine;
 
 class MaintenanceOrderController extends Controller
 {
@@ -73,4 +74,19 @@ class MaintenanceOrderController extends Controller
     {
         //
     }
+
+     public function machinesWithPendingCorrectiveMaintenance() //Nain ejercicio 6 
+    {
+        $machines = Machine::with('productionLine:id,name')
+            ->whereHas('maintenanceOrders', function ($query) {
+                $query->where('maintenance_type', 'correctivo')
+                      ->where('status', 'pendiente')
+                      ->whereNull('completed_at');
+            })
+            ->get(['id', 'production_line_id', 'code', 'name', 'status', 'criticality']);
+
+        return response()->json($machines);
+    }
+
+
 }

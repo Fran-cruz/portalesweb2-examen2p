@@ -69,7 +69,11 @@ class MachineSeeder extends Seeder
             'code' => 'MAQ-006',
             'name' => 'Cabina de pintura',
             'type' => 'Pintura',
+<<<<<<< HEAD
+            'status' => 'fuera de servicio',
+=======
             'status' => 'fuera_de_servicio',
+>>>>>>> 298efd8498956336c2242fb5f8e69153e5a0f5ea
             'criticality' => 'alta',
             'created_at' => now(),
             'updated_at' => now(),

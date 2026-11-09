@@ -71,4 +71,14 @@ class MachineController extends Controller
 
         return response()->json($machines);
     }
+    // Consulta 4. CANTIDAD DE ORDENES DE MANTENIMIENTO POR MAQUINA
+    public function machinesWithMaintenanceCount()
+    {
+        $machines = Machine::select('code', 'name', 'status', 'criticality')
+            ->withCount('maintenanceOrders')
+            ->orderBy('maintenance_orders_count', 'desc')
+            ->get();
+
+        return response()->json($machines);
+    }
 }
